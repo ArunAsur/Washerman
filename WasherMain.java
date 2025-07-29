@@ -7,5 +7,46 @@ public class WasherMain
     {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter a number:");
+        String largeInt = sc.readLine();
+        boolean[] largeIntBits = binaryConvert(largeInt);
+    }
+
+    private boolean[] binaryConvert(String stringToConvert)
+    {
+        String[] dividends = {"0", "0", "1", "1", "2", "2", "3", "3", "4", "4",
+                              "5", "5", "6", "6", "7", "7", "8", "8", "9", "9"};
+        String[] remainders = {0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1,
+                               0, 1, 0, 1};
+        
+        int stringLength = stringToConvert.length();
+        int bitLength = stringLength / 3 * 10;
+        if(stringLength % 3 == 1)
+        {
+            bitLength += 4;
+        }
+        else if(stringLength % 3 == 2)
+        {
+            bitLength += 7;
+        }
+        boolean[] toReturn = new boolean[bitLength];
+        int booleanIndex = 0;
+        String newString = stringToConvert;
+        while(!newString.match("^0+$"))
+        {
+            newString = "";
+            int borrow = 0;
+            for(int k = 0; k < stringToConvert.length(); k++)
+            {
+                int digit = (int)stringToConvert.charAt(k) - 48;
+                int quotient = digit + 10 * borrow;
+                String dividend = dividends[quotient];
+                newString += dividend;
+                int remainder = remainders[quotient];
+                borrow = remainder;
+            }
+            toReturn[booleanIndex] = (boolean)borrow;
+            booleanIndex++;
+        }
+        return toReturn;
     }
 }
