@@ -30,10 +30,9 @@ public class WasherMain
         }
         boolean[] toReturn = new boolean[bitLength];
         int booleanIndex = 0;
-        String newString = stringToConvert;
-        while(!newString.match("^0+$"))
+        while(!stringToConvert.match("^0+$"))
         {
-            newString = "";
+            String newString = "";
             int borrow = 0;
             for(int k = 0; k < stringToConvert.length(); k++)
             {
@@ -46,6 +45,7 @@ public class WasherMain
             }
             toReturn[booleanIndex] = (boolean)borrow;
             booleanIndex++;
+            stringToConvert = newString;
         }
         return toReturn;
     }
