@@ -1,8 +1,13 @@
 /**
- * 
+ * A utility class for performing binary operations, such as
+ * decimal to binary conversion.
  */
 public class BinaryUtils
-{ 
+{
+    /**
+     * Helper method for converting a numeric string into a boolean array
+     * representing a binary number.
+     */
     private static boolean[] binaryConvert(String stringToConvert)
     {
         String[] dividends = {"0", "0", "1", "1", "2", "2", "3", "3", "4", "4",
