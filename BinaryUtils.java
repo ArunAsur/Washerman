@@ -46,4 +46,39 @@ public class BinaryUtils
         }
         return toReturn;
     }
+
+    public static List<BinaryRegion>
+            getBinaryRegionList(String numToConvert)
+    {
+        List<BinaryRegion> toReturn = new LinkedList<BinaryRegion>();
+        boolean[] binaryArray = binaryConvert(numToConvert);
+        int booleanIndex = 0;
+        while(booleanIndex < binaryArray.length)
+        {
+            if(binaryArray[booleanIndex])
+            {
+                int regionLength = 0;
+                for(int k = booleanIndex; k < binaryArray.length; k++)
+                {
+                    if(binaryArray[booleanIndex])
+                    {
+                        regionLength++;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                BinaryRegion newRegion = new BinaryRegion();
+                newRegion.setStart(booleanIndex);
+                newRegion.setLength(regionLength);
+                toReturn.add(newRegion);
+                booleanIndex += regionLength;
+            }
+            else
+            {
+                booleanIndex++;
+            }
+        }
+    }
 }
