@@ -47,6 +47,15 @@ public class BinaryUtils
         return toReturn;
     }
 
+    /**
+     * Converts an integer represented by a numeric string into a list of binary
+     * regions.  A binary region is simply a string of "1" bits with a specific
+     * starting point and length (see BinaryRegion.java for more details).  For
+     * the purposes of this program, binary regions in an integer separated only
+     * by a single zero will be merged into a single binary region (for example,
+     * 011011000 will be stored as a single binary region beginning at index 3
+     * and ending at index 8).
+     */
     public static List<BinaryRegion>
             getBinaryRegionList(String numToConvert)
     {
@@ -64,6 +73,12 @@ public class BinaryUtils
                     {
                         regionLength++;
                     }
+                    else if(booleanIndex + 1 < binaryArray.length &&
+                            binaryArray[booleanIndex + 1] &&
+                            booleanIndex - 1 >= 0 &&
+                            binaryArray[booleanIndex - 1])
+                    {
+                        regionLength++;
                     else
                     {
                         break;
