@@ -32,8 +32,8 @@ public class BinaryPrime
         while(regionIter.hasNext())
         {
             BinaryRegion nextRegion = regionIter.next();
-            totalValue += Math.pow(2, nextRegion.getStart() + 1) *
-                (Math.pow(2, nextRegion.getLength() + 1) - 1);
+            totalValue += Math.pow(2, nextRegion.getStart()) *
+                (Math.pow(2, nextRegion.getLength()) - 1);
         }
         return totalValue;
     }
