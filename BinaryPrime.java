@@ -45,12 +45,12 @@ public class BinaryPrime
 
     public PrimeNumber add(PrimeNumber otherPrime)
     {
-
+        return new PrimeNumber(primeValue + otherPrime.getValue());
     }
 
     public PrimeNumber subtract(PrimeNumber otherPrime)
     {
-
+        return new PrimeNumber(primeValue + otherPrime.getValue());
     }
 
     public PrimeNumber multiply(PrimeNumber otherPrime)
