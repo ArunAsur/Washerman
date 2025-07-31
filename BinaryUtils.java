@@ -81,4 +81,14 @@ public class BinaryUtils
             }
         }
     }
+
+    private static boolean[] resizeBooleanArray(boolean[] toResize)
+    {
+        boolean[] toReturn = new boolean[toResize.length * 2];
+        for(int k = 0; k < toResize.length; k++)
+        {
+            toReturn[k] = toResize[k];
+        }
+        return toReturn;
+    }
 }
