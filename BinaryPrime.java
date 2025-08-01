@@ -53,6 +53,16 @@ public class BinaryPrime
         return new PrimeNumber(primeValue + otherPrime.getValue());
     }
 
+    /**
+     * A integer can be represented as a sequence of binary regions,
+     * where the regions are represented as a series of "1" bits.  The
+     * formula for the sum of a geometric series can then be used to
+     * represent the binary regions:
+     * S = a + ar + ar^2 + ... + ar^n-1 + ar^n
+     * S = a(1 - r^(n+1))/(1 - r)
+     * Multiplying two binary regions would therefore involve using
+     * algebra to find the product of the sums.
+     */
     public PrimeNumber multiply(PrimeNumber otherPrime)
     {
         int totalSum = 0;
@@ -64,19 +74,24 @@ public class BinaryPrime
             while(otherIter.hasNext())
             {
                 BinaryRegion otherRegion = otherPrime.next();
-                PrimeNumber product = new PrimeNumber(Math.pow(2, nextRegion.getStart()
-                    + otherRegion.getStart() + otherRegion.getLength())
-                    * Math.pow(2, nextRegion.getLength() - 1));
-                PrimeNumber subtract = new PrimeNumber(Math.pow(2, nextRegion.getLength()
-                    - 1));
+                PrimeNumber product = new PrimeNumber(Math.pow(2,
+                    nextRegion.getStart() + otherRegion.getStart() +
+                    otherRegion.getLength()) * (Math.pow(2,
+                    nextRegion.getLength()) - 1));
+                PrimeNumber subtract = new PrimeNumber(Math.pow(2,
+                    nextRegion.getLength()) - 1);
                 PrimeNumber difference = product.subtract(subtract);
                 totalSum += difference.getValue();
             }
         }
+        return new PrimeNumber(totalSum);
     }
 
+    /**
+     * 
+     */
     public PrimeNumber divide(PrimeNumber divisor)
     {
-
+        
     }
 }
