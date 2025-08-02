@@ -174,7 +174,7 @@ public class BinaryUtils
                     }
                 }
                 BinaryRegion newRegion = new BinaryRegion();
-                newRegion.setStart(reciprocalIndex);
+                newRegion.setStart(-1 - reciprocalIndex);
                 newRegion.setLength(regionLength);
                 toReturn.add(newRegion);
                 reciprocalIndex += regionLength;
