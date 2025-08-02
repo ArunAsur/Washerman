@@ -138,6 +138,8 @@ public class BinaryUtils
                 }
             }
             remainder = remainder - toConvert;
+            //Stop when the remainder reaches 1, because now there is a
+            //repeating decimal.
             if(remainder == 1)
             {
                 break;
