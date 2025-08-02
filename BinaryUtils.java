@@ -97,12 +97,90 @@ public class BinaryUtils
         }
     }
 
+    /**
+     * Helper method for resizing a boolean array.
+     */
     private static boolean[] resizeBooleanArray(boolean[] toResize)
     {
         boolean[] toReturn = new boolean[toResize.length * 2];
         for(int k = 0; k < toResize.length; k++)
         {
             toReturn[k] = toResize[k];
+        }
+        return toReturn;
+    }
+
+    /**
+     * Finds the reciprocal of an integer and converts it into a list of binary
+     * regions.  A binary region is simply a string of "1" bits with a specific
+     * starting point and length (see BinaryRegion.java for more details).  For
+     * the purposes of this program, binary regions in an integer separated only
+     * by a single zero will be merged into a single binary region (for example,
+     * 011011000 will be stored as a single binary region beginning at index 3
+     * and ending at index 8).
+     */
+    public static List<BinaryRegion> getBinaryReciprocalList(int toConvert)
+    {
+        List<BinaryRegion> toReturn = new LinkedList<BinaryRegion>();
+        boolean[] reciprocal = new boolean[255];
+        int reciprocalIndex = 0;
+        int remainder = 1;
+        while(true)
+        {
+            while(toConvert > remainder)
+            {
+                remainder = remainder * 2;
+                reciprocal[reciprocalIndex] = false;
+                reciprocalIndex++;
+                if(reciprocalIndex == reciprocal.length)
+                {
+                    reciprocal = resizeBooleanArray(reciprocal);
+                }
+            }
+            remainder = remainder - toConvert;
+            if(remainder == 1)
+            {
+                break;
+            }
+            reciprocal[reciprocalIndex] = true;
+            reciprocalIndex++;
+            if(reciprocalIndex == reciprocal.length)
+            {
+                reciprocal = resizeBooleanArray(reciprocal);
+            }
+        }
+        for(int k = 0; k < reciprocalIndex; k++)
+        {
+            if(reciprocal[reciprocalIndex])
+            {
+                int regionLength = 0;
+                for(int k = reciprocalIndex; k < reciprocal.length; k++)
+                {
+                    if(reciprocal[reciprocalIndex])
+                    {
+                        regionLength++;
+                    }
+                    else if(reciprocalIndex + 1 < reciprocal.length &&
+                            reciprocal[reciprocalIndex + 1] &&
+                            reciprocalIndex - 1 >= 0 &&
+                            reciprocal[reciprocalIndex - 1])
+                    {
+                        regionLength++;
+                    else
+                    {
+                        break;
+                    }
+                }
+                BinaryRegion newRegion = new BinaryRegion();
+                newRegion.setStart(reciprocalIndex);
+                newRegion.setLength(regionLength);
+                toReturn.add(newRegion);
+                reciprocalIndex += regionLength;
+            }
+            else
+            {
+                reciprocalIndex++;
+            }
         }
         return toReturn;
     }
