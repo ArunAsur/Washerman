@@ -115,9 +115,11 @@ public class BinaryPrime
     }
 
     /**
-     * Similar to the multiply() function, except this time, the
-     * binary regions of this number are multiplied by the binary
-     * regions of the reciprocal of the other prime.
+     * Similar to the multiply() function, except this time, the binary regions
+     * of this number are multiplied by the binary regions of the reciprocal of
+     * the other prime.  The formula for computing the product of two binary
+     * regions differs slightly since they are on opposite sides of the decimal
+     * point.
      */
     public PrimeNumber divide(PrimeNumber divisor)
     {
