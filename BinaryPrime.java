@@ -70,7 +70,8 @@ public class BinaryPrime
         while(regionIter.hasNext())
         {
             BinaryRegion nextRegion = regionIter.next();
-            Iterator<BinaryRegion> otherIter = otherPrime.iterator();
+            Iterator<BinaryRegion> otherIter =
+                otherPrime.regionList.iterator();
             while(otherIter.hasNext())
             {
                 BinaryRegion otherRegion = otherPrime.next();
@@ -91,7 +92,9 @@ public class BinaryPrime
     }
 
     /**
-     * 
+     * Similar to the multiply() function, except this time, the
+     * binary regions of the product are multiplied by the binary
+     * regions of the 
      */
     public PrimeNumber divide(PrimeNumber divisor)
     {
