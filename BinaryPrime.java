@@ -3,7 +3,7 @@
  */
 public class BinaryPrime
 {
-    private int primeValue = -1;
+    private double primeValue = -1;
     private List<BinaryRegion> regionsList = null;
     private List<BinaryRegion> reciprocalList = null;
 
@@ -13,27 +13,28 @@ public class BinaryPrime
         reciprocalList = new LinkedList<BinaryRegion>();
     }
 
-    public BinaryPrime(int newValue)
+    public BinaryPrime(double newValue)
     {
         setValue(newValue);
     }
 
-    public void setValue(int newValue)
+    public void setValue(double newValue)
     {
         primeValue = newValue;
         regionsList = BinaryUtils.getBinaryRegionList(newValue);
         reciprocalList = BinaryUtils.getReciprocalRegionList(newValue);
     }
 
-    public int getValue()
+    public double getValue()
     {
-        int totalValue = 0;
+        double totalValue = 0;
         Iterator<BinaryRegion> regionIter = regionsList.iterator();
         while(regionIter.hasNext())
         {
             BinaryRegion nextRegion = regionIter.next();
             totalValue += Math.pow(2, nextRegion.getStart()) *
-                (Math.pow(2, nextRegion.getLength()) - 1);
+                (Math.pow(2, nextRegion.getStart() + nextRegion.getLength() +
+                1) - 1);
         }
         return totalValue;
     }
