@@ -16,6 +16,8 @@ public class BinaryPrime
     public BinaryPrime(double newValue)
     {
         setValue(newValue);
+        regionsList = new LinkedList<BinaryRegion>();
+        reciprocalList = new LinkedList<BinaryRegion>();
     }
 
     public void setValue(double newValue)
