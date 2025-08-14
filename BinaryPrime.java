@@ -41,6 +41,26 @@ public class BinaryPrime
         return totalValue;
     }
 
+    public List<BinaryRegion> getRegionsList()
+    {
+        return regionsList;
+    }
+    
+    public void setRegionsList(List<BinaryRegion> newRegionsList)
+    {
+        regionsList = newRegionsList;
+    }
+
+    public List<BinaryRegion> getReciprocalsList()
+    {
+        return reciprocalsList();
+    }
+
+    public void setReciprocalsList(List<BinaryRegion> newReciprocalsList)
+    {
+        reciprocalsList = newReciprocalsList;
+    }
+
     private void evaluate()
     {
         primeValue = getValue();
