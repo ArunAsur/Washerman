@@ -80,8 +80,9 @@ public class BinaryPrime
                     * (Math.pow(2, nextRegion.getStart() +
                     nextRegion.getLength()) - 1));
                 PrimeNumber subtract = new PrimeNumber(Math.pow(2,
-                    nextRegion.getStart() + nextRegion.getLength())
-                    - 1);
+                    nextRegion.getStart() + otherRegion.getStart())
+                    * (Math.pow(2, nextRegion.getStart() +
+                    nextRegion.getLength()) - 1));
                 PrimeNumber difference = product.subtract(subtract);
                 totalSum += difference.getValue();
             }
