@@ -79,11 +79,11 @@ public class BinaryPrime
                     nextRegion.getStart() + otherRegion.getStart() +
                     otherRegion.getStart() + otherRegion.getLength())
                     * (Math.pow(2, nextRegion.getStart() +
-                    nextRegion.getLength()) - 1));
+                    nextRegion.getLength() + 1) - 1));
                 PrimeNumber subtract = new PrimeNumber(Math.pow(2,
                     nextRegion.getStart() + otherRegion.getStart())
                     * (Math.pow(2, nextRegion.getStart() +
-                    nextRegion.getLength()) - 1));
+                    nextRegion.getLength() + 1) - 1));
                 PrimeNumber difference = product.subtract(subtract);
                 totalSum += difference.getValue();
             }
@@ -93,26 +93,31 @@ public class BinaryPrime
 
     /**
      * Similar to the multiply() function, except this time, the
-     * binary regions of the product are multiplied by the binary
-     * regions of the 
+     * binary regions of this number are multiplied by the binary
+     * regions of the reciprocal of the other prime.
      */
     public PrimeNumber divide(PrimeNumber divisor)
     {
-        int totalSum = 0;
+        double totalSum = 0;
         Iterator<BinaryRegion> regionIter = regionList.iterator();
         while(regionIter.hasNext())
         {
             BinaryRegion nextRegion = regionIter.next();
-            Iterator<BinaryRegion> otherIter = otherPrime.iterator();
+            Iterator<BinaryRegion> otherIter =
+                otherPrime.reciprocalsList.iterator();
             while(otherIter.hasNext())
             {
                 BinaryRegion otherRegion = otherPrime.next();
                 PrimeNumber product = new PrimeNumber(Math.pow(2,
-                    nextRegion.getStart() + otherRegion.getStart() +
-                    otherRegion.getLength()) * (Math.pow(2,
-                    nextRegion.getLength()) - 1));
+                    nextRegion.getStart() - otherRegion.getStart()) *
+                    (Math.pow(2, nextRegion.getStart() +
+                    nextRegion.getLength() + 1) - 1));
                 PrimeNumber subtract = new PrimeNumber(Math.pow(2,
-                    nextRegion.getLength()) - 1);
+                    nextRegion.getStart() - otherRegion.getStart() +
+                    otherRegion.getStart() - otherRegion.getStart() -
+                    otherRegion.getLength()) *
+                    (Math.pow(2, nextRegion.getStart() +
+                    nextRegion.getLength() + 1) - 1));
                 PrimeNumber difference = product.subtract(subtract);
                 totalSum += difference.getValue();
             }
