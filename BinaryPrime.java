@@ -66,12 +66,12 @@ public class BinaryPrime
     public PrimeNumber multiply(PrimeNumber otherPrime)
     {
         int totalSum = 0;
-        Iterator<BinaryRegion> regionIter = regionList.iterator();
+        Iterator<BinaryRegion> regionIter = regionsList.iterator();
         while(regionIter.hasNext())
         {
             BinaryRegion nextRegion = regionIter.next();
             Iterator<BinaryRegion> otherIter =
-                otherPrime.regionList.iterator();
+                otherPrime.regionsList.iterator();
             while(otherIter.hasNext())
             {
                 BinaryRegion otherRegion = otherPrime.next();
