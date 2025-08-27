@@ -73,7 +73,7 @@ public class BinaryPrime
 
     public PrimeNumber subtract(PrimeNumber otherPrime)
     {
-        return new PrimeNumber(primeValue + otherPrime.getValue());
+        return new PrimeNumber(primeValue - otherPrime.getValue());
     }
 
     /**
@@ -124,6 +124,7 @@ public class BinaryPrime
     public PrimeNumber divide(PrimeNumber divisor)
     {
         double totalSum = 0;
+        int lastIteration = 1;
         Iterator<BinaryRegion> regionIter = regionList.iterator();
         while(regionIter.hasNext())
         {
@@ -134,19 +135,27 @@ public class BinaryPrime
             {
                 BinaryRegion otherRegion = otherPrime.next();
                 PrimeNumber product = new PrimeNumber(Math.pow(2,
-                    nextRegion.getStart() - otherRegion.getStart()) *
+                    nextRegion.getStart() + otherRegion.getStart()) *
                     (Math.pow(2, nextRegion.getStart() +
                     nextRegion.getLength() + 1) - 1));
                 PrimeNumber subtract = new PrimeNumber(Math.pow(2,
-                    nextRegion.getStart() - otherRegion.getStart() +
+                    nextRegion.getStart() + otherRegion.getStart() +
                     otherRegion.getStart() - otherRegion.getStart() -
                     otherRegion.getLength()) *
                     (Math.pow(2, nextRegion.getStart() +
                     nextRegion.getLength() + 1) - 1));
                 PrimeNumber difference = product.subtract(subtract);
                 totalSum += difference.getValue();
+                lastIteration = otherRegion.getStart();
             }
         }
-        return new PrimeNumber(totalSum);
+        double toReturn = totalSum;
+        double nextTerm = toReturn * Math.pow(2, lastIteration);
+        while(nextTerm > 1)
+        {
+            toReturn += nextTerm;
+            nextTerm = nextTerm * Math.pow(2, lastIteration);
+        }
+        return new PrimeNumber(toReturn);
     }
 }
