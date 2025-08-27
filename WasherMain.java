@@ -8,7 +8,9 @@ public class WasherMain
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter a number:");
         String largeInt = sc.readLine();
-        boolean[] largeIntBits = binaryConvert(largeInt);
+        boolean[] largeIntBits = BinaryUtils.getBinaryRegionList(largeInt);
+        boolean[] largeIntReverse = 
+            BinaryUtils.getBinaryReciprocalsList(largeInt);
     }
 
     private boolean[] binaryConvert(String stringToConvert)
