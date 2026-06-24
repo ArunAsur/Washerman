@@ -68,7 +68,14 @@ public class BinaryPrime
 
     public PrimeNumber add(PrimeNumber otherPrime)
     {
-        return new PrimeNumber(primeValue + otherPrime.getValue());
+        int totalSum = 0;
+        Iterator<BinaryRegion> regionIter = regionsList.iterator();
+        Iterator<BinaryRegion> otherIter = otherPrime.regionsList.iterator();
+        while(regionIter.hasNext() && otherIter.hasNext())
+        {
+            
+        }
+        return new PrimeNumber(totalSum);
     }
 
     public PrimeNumber subtract(PrimeNumber otherPrime)
